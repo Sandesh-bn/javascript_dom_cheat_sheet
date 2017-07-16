@@ -1,0 +1,74 @@
+<html>
+
+<body>
+    <i id="elm">HOW</i>
+    <div id="A"></div>
+    <span id="B"></span>
+    <div id="C"></div>
+    <div id="D"></div>
+    <div id="E"></div>
+    
+    <p id="para">Hi</p>
+    
+    <ul id="ul">
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    
+    <div id="X">This wont be visible</div>
+    <div id="XX">This wont be visible</div>
+    
+    <script>
+        var $ = function(id){
+            return document.getElementById(id);
+        }
+        var eleNode = document.createElement('div');
+        console.log(eleNode, eleNode.nodeType);
+        
+        var textNode = document.createTextNode("Hi")
+        console.log(textNode, textNode.nodeType);
+        
+        $('A').innerHTML = '<strong>Hi</strong>'
+        $('B').outerHTML = "<div id='B' class='new'>What's shaking</div>"
+        $('C').textContent = 'dude';
+        $('D').innerText = 'Keep it';
+        $('E').outerText = 'real!';
+        
+        var elm = $('elm');
+        elm.insertAdjacentHTML('beforebegin', '<span>Hey </span');
+        
+        elm.insertAdjacentHTML('afterbegin','Dude ')
+        
+        elm.insertAdjacentHTML('beforeend', ' are ')
+        elm.insertAdjacentHTML('afterend', 'you?')
+        
+        var ele = document.createElement('b');
+        var text = document.createTextNode(' Dude');
+        
+        $('para').appendChild(ele);
+        document.querySelector('b').appendChild(text);
+        
+        
+        var text1 = document.createTextNode('1');
+        var li = document.createElement('li');
+        li.appendChild(text1);
+        
+        var ul = $('ul')
+        ul.insertBefore(li, ul.firstChild);
+        
+        var x = $('X');
+        var newSpan = document.createElement('span');
+        newSpan.textContent = 'from js'
+        //x.parentNode.removeChild(x);
+        x.parentNode.replaceChild(newSpan, x);
+        
+        var xx = $('XX').firstChild;
+        xx.parentNode.removeChild(xx);
+        
+        for (var i = 0; i < 5; i++){
+            ul.insertAdjacentHTML('afterend', "lala\n")
+        }
+    </script>
+</body>
+
+</html>

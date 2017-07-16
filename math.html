@@ -1,0 +1,40 @@
+<html>
+
+<body>
+
+    <script>
+        var val = parseInt(prompt("Enter number: "))
+        while (isNaN(val) || val < 1 || val > 10) {
+            alert("you did not enter value bw 1 and 10")
+            val = parseInt(prompt("Enter number: "))
+        }
+        
+        var total = 0, count = 0, number = 0;
+        alert("Enter numbers to average. enter non-number to stop");
+        number = parseFloat(prompt("Enter a number: "));
+        while(!isNaN(number)){
+            count++;
+            total += number;
+            number = parseFloat(prompt("Enter a number: "));
+        }
+        var average = total / count;
+        if (isNaN(average))
+            alert("you didn't enter any number")
+        else
+            alert("Avaregae is " + average);
+        
+        var item = [];
+        item["itemCode"] = 123;
+        item["itemName"] = "VB";
+        item["itemCost"] = 52.5;
+        item["itemQuantity"] = 5;
+        item["lineCost"] = (item["itemCost"] * item["itemQuantity"].toFixed(2));
+        
+        res = "Iteme elements:\n";
+        for (var it in item)
+            res += item[it] + "\n";
+        alert(res)
+    </script>
+</body>
+
+</html>

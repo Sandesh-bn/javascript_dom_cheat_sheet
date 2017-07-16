@@ -1,0 +1,23 @@
+<html>
+
+
+<body>
+    <ul>
+        <!--comment -->
+        <li id="A"></li>
+        <li id="B"></li>
+        <!-- comment -->
+    </ul>
+    <script>
+        var $ = function(id){
+            return document.getElementById(id);
+        }
+        var c = console.log;
+        var ul = document.querySelector('ul');
+        c("parent " + ul.parentNode.nodeName)
+        c("firstChild " + ul.firstElementChild.nodeName);
+        c("lastchild " + ul.lastChild.nodeName)
+    </script>
+</body>
+
+</html>

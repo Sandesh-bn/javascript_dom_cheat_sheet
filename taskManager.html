@@ -1,0 +1,72 @@
+<html>
+
+<head></head>
+
+<body>
+    
+    <h1>Task manager</h1>
+    <button id="add_task">Add task</button>
+    <textarea rows="5" cols="80" id="task_list"></textarea><br/>
+    <button id="sort_task">sort task</button><br/>
+    <button id="delete_task">Delete task</button><br/>
+    
+    <script>
+        var task_list=[];
+        
+        var $ = function(id){return document.getElementById(id)}
+        var updateTask = function(){
+            if (task_list.length == 0)
+                $("task_list").value = "";
+            else {
+                var list = "";
+                for (var i in task_list)
+                    list += (parseInt(i) + 1) + ": " + task_list[i] + "\n";
+                $("task_list").value=list;
+            }
+        }
+        
+        var add_task_click = function(){
+            $("add_task").blur();
+            var task = prompt("Enter a task: ", "");
+            if (task != "" && task != null){
+                task_list[task_list.length] = task;
+                updateTask();
+            }
+        }
+        
+        var sort_task_click = function(){
+            $("sort_task").blur();
+            task_list.sort();
+            updateTask();
+        }
+        
+        var delete_task_click = function(){
+            var index = prompt("Enter task number to delete: ");
+            if (index == null){return;}
+            index = parseInt(index);
+            if (isNaN(index)){
+                alert("invalid entry")
+                return;
+            }
+            if (index < 1 || index > task_list.length){
+                alert("Invalid number");
+                return;
+            }
+            index--;
+            task_list.splice(index, 1);
+            updateTask();
+                
+        }
+        window.onload = function(){
+            document.getElementById("add_task").onclick = add_task_click;
+            document.getElementById("sort_task").onclick = sort_task_click;
+            document.getElementById("delete_task").onclick = delete_task_click;
+            updateTask();
+            
+            
+        }
+        
+    </script>
+    </body>
+
+</html>

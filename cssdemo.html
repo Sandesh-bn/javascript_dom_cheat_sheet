@@ -1,0 +1,56 @@
+<html>
+<style>
+    ul{
+        list-style: none;
+        border: solid 1px #ccc;
+    }
+    #same {
+        color: red;
+    }
+    #container > .box{
+        color: green;
+    }
+    h2 + p {
+        color: yellow;
+    }
+    .border {
+        border-color: red blue red;
+    }
+    </style>
+<body>
+    <ul class="border">
+        <li>Fish</li>
+        <li>Apple</li>
+        <li>Cheese</li>
+    </ul>
+    <div id="container">
+        <div class="box">box</div>
+        <div class="box">box</div>
+        <div>
+            <div class="box">box</div>
+        </div>
+        <div class="box">box</div>
+    </div>
+    <div class="example">
+        <p>Exampe para</p>
+    </div>
+    <div id="same">Hi</div>
+    <div id="same">Hello</div>
+    <ul>
+        <li>Water</li>
+        <li>Juuice</li>
+        <li>Maple syrup</li>
+    </ul>
+    <div class="box">box</div>
+    
+    <p>yellow text</p>
+    <h2>Yellow text</h2>
+    <p>yellow text</p>
+    <h1>yellow text</h1>
+    <p>yellow text</p>
+    <div>
+        <p>yellow text</p>
+    </div>
+    <p>yellow text</p>
+    </body>
+</html>

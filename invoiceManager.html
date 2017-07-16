@@ -1,0 +1,92 @@
+<html>
+
+<head></head>
+
+<body>
+    <div id="content">
+        <div class="formLayout">
+            <label for="item_code">Item code: </label>
+            <input type="text"name="item_code" id="item_code"/><br/>
+            
+            <label for="item_name">Item name: </label>
+            <input type="text" name="item_name" id="item_name"/><br/>
+            
+            <label for="item_cost">Item cost: </label>
+            <input type="text" name="item_cost" id="item_cost"/><br/>
+            
+            <label for="item_qty">Item quantity: </label> <input name="item_qty" id="item_qty" value="1"/><br/>
+            
+            <label>&nbsp;</label>
+            <input type="button" id="item_add" value="Add item" /><br/>
+        </div>
+        
+        <p class="startInvoice">Current invoice</p>
+        
+        <p><textarea id="item_list" rows="5" cols="80"></textarea></p>
+        
+        <div class="formLayout">
+            <label for="subtotal">Subtotal: </label>
+            <input type="text" name="subtotal" id="subtotal" class="disabled" disabled="disabled"/>
+            
+            <label for="sales_tax">Sales tax :</label>
+            <input type="text" name="sales_tax" id="sales_tax" class="disabled" disabled="disabled"/>
+            
+            <label for="total">Total: </label>
+            <input type="text" name="total" id="total"
+                   disabled="disabled"/>
+        </div>
+    </div>
+    
+    <script>
+        var pad_left = function(text, width, pad){
+            if (arguments.length < 2 || arguments.length > 3)
+                return "";
+            if (arguments.length == 2)
+                pad = " ";
+            var result = text.toString();
+            while(result.length < width){
+                result = pad + result;
+            }
+            return result;
+        }
+        
+        var pad_right = function(text, width, pad){
+            if (arguments.length < 2 || arguments.length > 3)
+                return "";
+            if (arguments.length == 2)
+                pad = " ";
+            var result = text.toString();
+            while(result.length < width){
+                result = result + pad ;
+            }
+            return result;
+        }
+        
+        var get_item_list = function(item_list){
+            if (item_list.length == 0)
+                return "";
+            
+            var list, line_cost, item_cost, item_count = 0;
+            
+            list = pad_right("Item code", 10) + " ";
+            list += pad_right("Item name", 40) + " ";
+            list += "Qty ";
+            list += "Item Cost ";
+            list += "Line Cost\n";
+            list += pad_right("", 10, "-") + " ";
+            list += pad_right("", 40, "-") + " ";
+            list += "- ";
+            list += pad_right("", 9, "-") + " ";
+            list += pad_right("", 9, "-") + "\n";
+            
+            for (var i in item_list){
+                item_cost = parseFloat(item_list[i]["item_cost"]);
+                line_cost = item_list[i]["item_qty"] * item_list[i]["item_cost"];
+                
+                list += pad_right
+            }
+        }
+    </script>
+</body>
+
+</html>

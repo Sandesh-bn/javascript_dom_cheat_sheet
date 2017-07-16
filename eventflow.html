@@ -1,0 +1,74 @@
+<html>
+
+<body>
+
+    <ul id='ul'>
+        <li id='li'>hi there</li>
+
+    </ul>
+    
+    <ul id="myLinks">
+        <li id="one">One</li>
+        <li id="two">Two</li>
+        <li id="three">Three</li>
+    </ul>
+    
+    <div id="myDiv">
+        <button id="myBtn">click me</button>
+    </div>
+    
+    <select name="number" id="selNumber">
+        <option value="one">One</option>
+        <option value="two">Two</option>
+        <option value="three">Three</option>
+    </select>
+    
+    
+    <script>
+        var ul = document.getElementById('ul');
+        var li = document.getElementById('li')
+        var disp = function(event){
+            
+            console.log(this);
+            event.stopPropagation();
+        }
+        /*ul.onclick = disp;
+        li.onclick = disp;
+        document.body.onclick = disp;
+        */
+
+        //document.body.addEventListener('click', disp, true)
+        ul.addEventListener('click', disp, true)
+        li.addEventListener('click', disp, true)
+               
+        
+        var list = document.getElementById("myLinks");
+        list.addEventListener('click', function(event){
+            var target = event.target;
+            
+            switch(target.id){
+                case "one":
+                    console.log("one");
+                    break;
+                case "two":
+                    console.log("two");
+                    break;
+                case "three":
+                    console.log("three");
+                    break;
+            }
+        })
+        
+        var btn = document.getElementById("myBtn");
+        btn.onclick = function(){
+            btn.onclick = null;
+            document.getElementById("myDiv").innerHTML = "<p>button vanished</p>"
+        }
+        
+        var selectbox = document.getElementById('selNumber')
+        var text = selectbox.options[0].text;
+        console.log(text);
+    </script>
+</body>
+
+</html>

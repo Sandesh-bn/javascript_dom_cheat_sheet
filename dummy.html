@@ -1,0 +1,71 @@
+<html>
+
+<head></head>
+
+<body>
+    <p>Today is <span id="date_output">&nbsp;</span>.</p>
+
+    <p>
+        <input type="checkbox" disabled="disabled" name="voteStatus" id="vote_status" /> You can vote when checked.
+    </p>
+
+    <p>Select toppings</p>
+    <p>
+        <input type="checkbox" name="topping" id="mushroom">Mushroom</p>
+    <p>
+        <input type="checkbox" name="topping" id="ham">Ham</p>
+    <p>
+        <input type="checkbox" name="topping" id="chicken">Chicken</p>
+    <button id="choose">Done.</button>
+    <textarea name="bill" id="bill" row="6" cols="40"></textarea>
+
+    <script>
+        window.onload = function() {
+            var $ = function(id) {
+                return document.getElementById(id);
+            }
+            var now = new Date();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            if (day < 10)
+                day = "0" + day;
+            var year = now.getFullYear();
+            var dateText = month + "/" + day + "/" + year;
+            $("date_output").firstChild.nodeValue = dateText;
+
+            $("vote_status").checked = false;
+            var age = prompt("Enter your age: ")
+            if (age == null)
+                alert("you clicked cancel")
+            else if (parseInt(age) >= 18)
+                $("vote_status").checked = true;
+            
+            
+            var displayBill = function() {
+                var isMushroom = $("mushroom").checked;
+                var isHam = $("ham").checked;
+                var isChicken = $("chicken").checked;
+
+                var message;
+
+                if (isMushroom || isChicken || isHam) {
+                    message = "you chose the following topings.\n";
+                    if (isMushroom)
+                        message += "Mushroom\n";
+                    if (isHam)
+                        message += "Ham\n";
+                    if (isChicken)
+                        message += "Chicken\n";
+                } else
+                    message = "you did not choose anything."
+                $("bill").value = message;
+            }
+            $("choose").onclick = displayBill;
+            
+            
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<htm>
+<head></head>
+    <body>
+        <input type="button" value="display" id="btn"/>
+        <script>
+            var $ = function(id){
+                return document.getElementById(id);
+            }
+            var displayClick = function(){
+                alert("you clicked")
+            }
+            window.onload = function(){
+                $("btn").onclick = displayClick    
+            }
+            
+        </script>
+    </body>
+</htm>

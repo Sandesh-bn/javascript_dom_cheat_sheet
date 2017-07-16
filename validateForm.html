@@ -1,0 +1,66 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Register for an Account</h1>
+        <form action="register_account.html" method="get"
+              name="registration_form" id="registration_form">
+        </form>
+        
+        <fieldset>
+            <legend>Account information</legend>
+            <div class="formLayout">
+                <label for="email">E-mail: </label>
+                <input type="text" name="email" id="email"/>
+                <span id="email_error">Must be a valid email address</span><br/>
+                
+                <label for="password">Password: </label>
+                <input type="text" name="password" id="password"/>
+                <span id="password_error">Must be atleast 6 letters long</span><br/>
+                
+                <label for="verify">Verify password:</label>
+                <input type="password" name="verify" id="verify"/>
+                <span id="verify_error">&nbsp;</span><br/>
+                
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>payment info</legend>
+            <div class="formLayout">
+                <label for="card_type">Card type: </label>
+                <select name="card_type" id="card_type">
+                    <option value="">Select one: </option>
+                    <option value="m">Master card</option>
+                    <option value="v">Visa</option>
+                </select>
+                <span id="card_type_error">&nbsp;</span><br/>
+                <label for="card_number">Card number: </label>
+                <input type="text" name="card_number" id="card_number"/>
+                <span id="card_number_error">Use 1111-2222-3333-4444 format.</span><br/>
+                
+                <label for="exp_date">Expiration date: </label>
+                <input type="text" name="exp_date" id="exp_date"/>
+                <span id="exp_date_error">use mm/yyyy format</span>
+                
+            </div>
+        
+        </fieldset>
+        
+        <fieldset>
+            <legend>Submit registration</legend>
+            <div class="formLayout">
+                <label>&nbsp;</label>
+                <input type="button" id="register" value="Reigster"/>
+                <input type="button" id="reset_form" value="Reset"/><br/>
+            </div>
+        </fieldset>
+        <p class="notice">all fields are required</p>
+    </div>
+</body>
+    
+
+</html>

@@ -1,0 +1,20 @@
+<html>
+
+<body>
+    <a href="#" style="color:yellow">Hi</a>
+    
+    <script>
+        var anchor = document.querySelector("a");
+        console.log(Object.keys(anchor).sort());
+        
+        var documentPropertiesIncludeInherited = [];
+        for (var p in document)
+            if(document.hasOwnProperty(p))
+            documentPropertiesIncludeInherited.push(p);
+        
+        console.log(documentPropertiesIncludeInherited.sort())
+        
+        document.body.appendChild(document.createElement('textarea'))
+    </script>
+    </body>
+</html>

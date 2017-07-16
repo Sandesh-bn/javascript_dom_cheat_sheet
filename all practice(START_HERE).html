@@ -1,0 +1,1467 @@
+practice here:
+http://xahlee.info/js/js_stopwatch.html
+https://dom-tutorials.appspot.com/static/index.html
+<!--
+Practice 1
+	<p id="first">you wont see me</p>
+	<p></p>
+	
+	<script>
+		Var paras = documents.getElementsByTagName('p')
+		For (var I = 0; I < paras.length; i++)
+			Paras[i].style.color = 'blue'
+		
+		Document.getElementById('first').color  = 'blue';
+	</script>
+-->
+
+<!--
+Practice 2
+	<h1 onclick='changeText(this)'>Click on me</h1>
+	
+	<script>
+		Var count = 0
+		Function changeText(id){
+			If (count % 2 == 0)
+				Id.innerHTML = 'Oops!';
+			Else
+				Id.innerHTML = 'Not again';
+			Count++;
+		}
+	</script>
+-->
+
+<!--
+practice 3 - events
+<html>
+    <h1 onclick='displayh1(this)'>Click me</h1>
+    <button onclick='displayDate(this)'>click me</button>
+    <script>
+        function displayh1(obj){
+            obj.innerHTML = 'displayh1 form js is executed';
+        }
+        function displayDate(btn){
+            btn.innerHTML = 'text changed';
+        }
+    </script>
+</html>
+-->
+
+<!--
+onload
+onload is triggered when user enters the page.
+<html>
+    <body onload="promptname()"  onbeforeunload="alert('thank you')" >
+        
+        <script>
+            var uname = ''
+            function promptname(){
+                uname = prompt("whats yoru name: ")
+                return uname;
+            }
+            window.onbeforeunload = function(){
+                alert("goodbye " + uname);
+            }
+            function bye(){
+                alert("bbye " + uname);
+            }
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+onchange
+<html>
+    <body>
+        <input type='text' id='fname' onchange='uppercase()'>
+        
+        <script>
+            function uppercase(){
+                console.log("you modified input")
+            }
+        </script>
+    </body>
+
+</html>
+-->
+
+<!--
+<html>
+    <body>
+        <h1 onmouseover="mOver(this)" onmouseout="mOut(this)">default</h1>
+        
+        <script>
+            function mOver(obj){
+                obj.innerHTML = "on mouse over"
+            }
+            function mOut(obj){
+                obj.innerHTML = "on mouse out"
+            }
+        </script>
+    </body>
+
+</html>
+
+-->
+
+<!--
+The onmousedown, onmouseup, and onclick events are all parts of a mouse-click. First when a mouse-button is clicked, the onmousedown event is triggered, then, when the mouse-button is released, the onmouseup event is triggered, finally, when the mouse-click is completed, the onclick event is triggered.
+
+<html>
+    <body>
+        <h1 onmousedown="mDown(this)" onmouseup="mUp(this)" onclick="mClick(this)">default</h1>
+        
+        <script>
+            function mDown(obj){
+                obj.style.background = 'yellow'
+                obj.innerHTML = 'on mouse down'
+            }
+            function mUp(obj){
+                obj.style.background = 'red'
+                obj.innerHTML = 'on mouse up'
+            }
+            function mClick(obj){
+                obj.style.background ='lightgreen'
+                obj.innerHTML='on click'
+            }
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+<html>
+    <body id='body'>
+        <p>First</p>
+        <p>Second</p>
+        <p>Third</p>
+        <script>
+            var nodes = document.getElementById('body').children;//  .childNodes;
+            console.log(nodes)
+            console.log(document.getElementById('body').childNodes[0].nodeValue)
+            for (var i = 0; i < nodes.length; i++)// for each tag within body
+                console.log(nodes[i] + " " + nodes[i].firstChild.nodeValue) // each tag has textnode, display it's value
+        </script>
+    </body>
+</html>
+
+https://www.w3schools.com/js/js_htmldom_navigation.asp
+
+-->
+
+<!--
+addEventListener()
+attaches an event handler to speciific element.
+you can add many event handlers to one element
+you can remove eventhandler using removeEventListener
+<html>
+    <body>
+        <br>
+        <button id='hi'>Click me</button>
+        <h1 id='morning'>hover over me</h1>
+        <script>
+            document.getElementById('hi').addEventListener('click', function(){alert("hello world")})
+            var isBlue = false;
+            function changeColor(){
+                console.log('hello')
+                if (isBlue){
+                    document.getElementById('morning').style.color = 'blue';
+                    isBlue = false;
+                }
+                else{
+                    document.getElementById('morning').style.color = 'red';
+                    isBlue = true;
+                }
+            }
+            document.getElementById('morning').addEventListener('mouseover', changeColor); // remember it is changeColor not changeColor()
+            
+            
+        </script>
+    </body>
+
+</html>
+
+-->
+
+<!--
+copying content from one node to another
+<html>
+    <body>
+        <h1 id='heading'>copying this to p tag</h1>
+        <p style='color:red;'></p>
+        <p style='color:blue;'></p>
+        <script>
+            var h = document.getElementById('heading');
+            var paras = document.getElementsByTagName('p');
+            paras[0].innerHTML = 'using javascript ' + h.innerHTML;
+            paras[1].innerHTML = 'using another way ' + h.childNodes[0].nodeValue;
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+creating html elements using js
+<html>
+    <body>
+        <div id="div1">
+            <p id="p1">para 1</p>
+            <p id="p2">para 2</p>
+        </div>
+        
+        <script>
+            var newPara = document.createElement('p');
+            var textNode = document.createTextNode('This is added by js');
+            newPara.appendChild(textNode);
+            
+            var divEle = document.getElementById('div1');
+            divEle.appendChild(newPara);
+            var newH = (document.createElement('H1'));
+            newH.appendChild(document.createTextNode('this is also added by js.'))
+            divEle.appendChild(newH);
+            
+            // using insert before
+            var secondPara = document.getElementById('p2');
+            var newH2 = document.createElement('H1');
+            newH2.appendChild(document.createTextNode('using insert before'));
+            divEle.insertBefore(newH2, secondPara);
+        </script>
+    </body>
+
+</html>
+-->
+
+<!--
+removing elemetns. you should have access to parent to remove the target element
+<html>
+    <body>
+        <div id="div1">
+            <p id='p1'>para1</p><button id='removeBtn'>Remove me</button>
+            <p id='p2'>para2</p>
+            <p id='p3'>you can also use parentNode property to remove an element</p>
+            <button id='removeBtn2'><-Remove this para</button>
+        </div>
+        <script>
+            var parent = document.getElementById('div1');
+            var target = document.getElementById('p1');
+            var btn = document.getElementById('removeBtn');
+            btn.addEventListener('click', function(){
+                parent.removeChild(target);
+            })
+            
+            var btn2 = document.getElementById('removeBtn2');
+            btn2.addEventListener('click', function(){
+                target2 = document.getElementById('p3');
+                target2.parentNode.removeChild(target2);
+            })
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+replace child
+<html>
+    <body>
+        <div id='div1'>
+            <p id='p1'>this is para</p><button id='replacebtn'>Click to replace p with h1</button>
+        </div>
+        <script>
+            var divEle = document.getElementById('div1');
+            var replaceBtn = document.getElementById('replacebtn');
+            replaceBtn.addEventListener('click', function(){
+                var para = document.getElementById('p1');
+                
+                var h1ele = document.createElement('H1');
+                content = para.innerHTML;
+                h1ele.appendChild(document.createTextNode(content));
+                
+                divEle.replaceChild(h1ele, para )
+            })
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+document properties
+<html>
+<body>
+    
+    <script>
+        console.log("screen width " + screen.width);
+        console.log("screen width " + screen.height);
+        console.log("screen width " + screen.availWidth);
+        console.log("screen width " + screen.availHeight);
+    </script>
+</body>
+</html>
+-->
+
+<!--
+<html>
+<body>
+    <button id='btn'>Go back one page</button>
+    
+    <script>
+        document.getElementById('btn').addEventListener('click', goBack);
+        function goBack(){
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+
+
+https://www.w3schools.com/js/js_window_navigator.asp
+-->
+
+<!--
+popupboxes
+<html>
+    <body>
+        <script>
+            alert("This is an alert box");
+            var res = confirm("confirm your selection");
+            var input = prompt("Enter something", 'default')
+        </script>
+    </body>
+
+</html>
+
+-->
+
+<!--
+settimeout - executes method after certain milliseconds
+setinterval - executes method every x milliseconds
+
+<html>
+<body>
+    <button onclick = 'clearInterval(intervalfun)'>stop interval function</button>)'
+    <script>
+        setTimeout(display, 7000);
+        function display(){
+            console.log("set time out after 7 seconds")
+        };
+        
+        var intervalfun = setInterval(displayEvery5, 5000);
+        function displayEvery5(){
+            console.log("display every 5 seconds")
+        }
+        
+        //clearInterval(intervalfun); // this will stop executing display5 even before it is started.
+    </script>
+    
+</body>
+
+</html>
+
+-->
+
+<!--
+<html>
+    <body>
+        <div id='intro'></div>
+        <script>
+            var mydiv = document.getElementById('intro');
+            var newLink = document.createElement('a');
+            newLink.href = 'http://google.com';
+            newLink.appendChild(document.createTextNode('visit google'))
+            mydiv.appendChild(newLink);
+        </script>
+    </body>
+
+</html>
+-->
+
+<!--
+mousedown
+mouseup
+click
+dblclick
+mouseover
+mouseout
+-->
+
+<!--
+keypress
+keydown
+keyup
+-->
+
+<!--
+form events
+select
+change
+submit
+reset
+focsu
+blur
+-->
+
+<!--
+load
+resize
+scroll
+unload
+-->
+
+<!--
+execute an event only once
+<html>
+    <body>
+        <button id='intro'>Click me</button>
+        <script>
+            var myIntro = document.getElementById('intro');
+            myIntro.addEventListener('click', oneClickOnly)
+            function oneClickOnly(){
+                alert("Wow, This is the one and only time");
+                myIntro.removeEventListener('click', oneClickOnly)
+            }
+        </script>
+    </body>
+
+</html>
+-->
+
+https://code.tutsplus.com/tutorials/javascript-and-the-dom-lesson-2--net-3669?_ga=2.58886383.374309536.1500129837-1282495801.1496154244
+
+<!--
+modify css
+<html>
+    <body>
+        <p id="text">Color me</p>
+        <button id="redBtn">RED</button>
+        <button id="blueBtn">BLUE</button>
+        
+        <script>
+            var ele = document.getElementById('text');
+            var redBtn = document.getElementById('redBtn')
+            var blueBtn = document.getElementById('blueBtn')
+            redBtn.addEventListener('click', changeColor);
+            blueBtn.addEventListener('click', changeColor);
+            function changeColor(e){
+                //ele.style.color = 
+                //console.log(e.target.id)
+                if(e.target.id == 'blueBtn'){
+                    ele.style.color = 'blue'
+                    ele.style.border = 'solid thin red'   
+                }
+                else{
+                    ele.style.color = 'red'
+                    ele.style.border = 'solid thin blue'   
+                }
+                ele.style.background = 'yellow'
+                console.log('clicked')
+            }
+        </script>
+    </body>
+
+</html>
+-->
+<!--
+<html>
+    <body>
+        <button id='btn'>Insert para after me</button>
+        <script>
+            document.getElementById('btn').addEventListener('click', fun);
+            function fun(){
+                var input = prompt("enter some text: ", "Replace me.");
+                var pele = document.createElement('p');
+                pele.appendChild(document.createTextNode(input));
+                document.querySelector('body').appendChild(pele)
+            }
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+avoid using document.write(). it is a blocking command and blocks all the execution until it completes
+-->
+
+<!--
+popup
+<html>
+    <body>
+        <button id='btn'>Launch window</button>
+        <script>
+            document.getElementById('btn').addEventListener('click', function(){
+                var win = window.open("math.html", "some", "width=500, height=750, left=100")
+                win.focus();
+            })
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+clock
+<html>
+    <p>Current time is <span id='time'></span></p>
+    <script>
+        var area = document.getElementById('time');
+        function format(num){
+            return num.toString().length == 1?
+                   "0" + num:
+                   "" + num;
+        }
+        function updateDisplay(){
+            var dd = new Date();
+            var h = dd.getHours();
+            var m = dd.getMinutes();
+            var s = dd.getSeconds();
+            area.textContent = format(h) + ":" + format(m) + ":" + format(s);
+        }
+        setInterval(updateDisplay, 1000);
+    </script>
+
+</html>
+
+-->
+
+<!--
+setattribute
+getattribute
+removeAttribute
+-->
+
+<!--
+DOCUMENT_NODE (e.g. window.document)
+ELEMENT_NODE (e.g. <body>, <a>, <p>, <script>, <style>, <html>, <h1> etc...)
+ATTRIBUTE_NODE (e.g. class="funEdges")
+TEXT_NODE (e.g. text characters in an html document including carriage returns and white space)
+DOCUMENT_FRAGMENT_NODE (e.g. document.createDocumentFragment())
+DOCUMENT_TYPE_NODE (e.g. <!DOCTYPE html>)
+-->
+
+<!--
+Node Properties:
+    childNodes
+    firstChild
+    lastChild
+    nextSibling
+    nodeName
+    nodeType
+    nodeValue
+    parentNode
+    previousSibling
+    Node Methods:
+    appendChild()
+    cloneNode()
+    compareDocumentPosition()
+    contains()
+    hasChildNodes()
+    insertBefore()
+    isEqualNode()
+    removeChild()
+    replaceChild()
+
+Document Methods:
+    document.createElement()
+    document.createTextNode()
+
+HTML * Element Properties:
+    innerHTML
+    outerHTML
+    textContent
+    innerText
+    outerText
+    firstElementChild
+    lastElementChild
+    nextElementChild
+    previousElementChild
+    children
+
+HTML element Methods:
+    insertAdjacentHTML()
+-->
+
+<!--
+every node has a nodeType property
+document.nodeName // #document
+document.querySelector('a').nodeType == 1 true // ELEMENT
+document.quereySelector('a').nodeName // ELEMENT_NODE
+document.querySelector('a').firrstChild.nodeType === 3 // TEXt
+document.querySelector('a').firstChild.nodeName // #text
+-->
+
+<!--
+nodeValue returns null for most node types except for Text and Comment
+<html>
+    <body>
+        <a href="#">Hi</a>
+        <script>
+            console.log(document.nodeValue);
+            console.log(document.querySelector('a').nodeValue);
+            console.log(document.querySelector('a').firstChild.nodeValue);
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+The createAttribute() method is depricated and should not be used for creating attribute nodes. Instead developers typically use getAttribute(), setAttribute(), and removeAttribute() methods. I will discus this in more detail in the Element node chapter.
+-->
+
+<!--
+innerhtml outerhtml
+<html>
+    <head>
+        <style> div {background: yellow;}</style>
+    </head>
+    <body>
+        <div id="A"></div>
+        <span id="B"></span>
+        <div id="C"></div>
+        <div id="D"></div>
+        <div id="E"></div>
+        
+        <script>
+            //  The innerHTML property will convert html elements found in the string to actual DOM nodes while the textContent can only be used to construct text nodes. If you pass textContent a string containing html elements it will simply spit it out as text.
+            // innerHTML invokes a heavy & expensive HTML parser where as text node generation is trivial thus use the innerHTML & friends sparingly
+            // create strong element inside div#A
+            document.getElementById('A').innerHTML = '<strong>Hi</strong>';
+            
+            // replace span#B with div#B
+            document.getElementById('B').outerHTML = '<div id="B" class="new">Whats happening</div>'
+            
+            // add text node to div#C
+            document.getElementById('C').textContent = 'This is textcontent in action';
+            
+        </script>
+    </body>
+
+</html>
+-->
+
+<!--
+adding elements before/after beginning before/after end of tag
+<html>
+    <body>
+        <i id='ele'>how</i>
+        
+        <script>
+            var ele = document.getElementById('ele');
+            // The insertAdjacentHTML options "beforebegin" and "afterend" will only work if the node is in the DOM tree and has a parent element. 
+            ele.insertAdjacentHTML('beforebegin', '<strong>Hey</strong');
+            ele.insertAdjacentHTML('afterbegin', '<span>How</span>');
+            ele.insertAdjacentHTML('beforeend', '<h2>are</h2>');
+            ele.insertAdjacentHTML('afterend', '<h3>you?</h3>');
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+extract parts of DOM tree
+<html>
+    <body>
+        <div id='A'><strong>hi</strong></div>
+        <div id="B">Dude<strong>how <i>are</i>you</strong><i>!</i></div>
+        
+        <script>
+            function $(id) { return document.getElementById(id)}
+            console.log($('A').innerHTML)
+            console.log($('A').outerHTML)
+            console.log($('B').textContent); // get only the text
+        
+        </script>
+    </body>
+
+</html>
+-->
+
+<!--
+insert before
+<html>
+    <body>
+        <ul>
+            <li>two</li>
+            <li>three</li>
+        </ul>
+        
+        <script>
+            var text = document.createTextNode('one(added by js using insertbefore)');
+            var liEle = document.createElement('li');
+            liEle.appendChild(text);
+            
+            var ulEle = document.querySelector('ul');
+            ulEle.insertBefore(liEle, ulEle.firstChild);
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+clone node
+<html>
+    <body>
+        <ul>
+            <li>Hi</li>
+            <li>There</li>
+        </ul>
+        
+        <script>
+            var cloneUL = document.querySelector('ul').cloneNode();
+            
+            //To clone a node and all of its children nodes you pass the cloneNode() method a parameter of of true. Below I use the cloneNode() method again but this time we clone all of the child nodes as well.
+            
+            var allChild = document.querySelector('ul').cloneNode(true);
+        </script>
+    </body>
+</html>
+-->
+
+<!-- nodelist HTMLCollection
+When selecting groups of nodes from a tree (cover in chaper 3) or accessing pre-defined sets of nodes, the nodes are either placed in a NodeList (e.g. document.querySelectorAll('*')) or HTMLCollection (e.g. document.scripts). These array like (i.e. not a real Array) object collections that have the following characteristics.
+
+A collection can either be live or static. Meaning that the nodes contained in the collection are either literally part of the live document or a snapshot of the live document.
+By default nodes are sorted inside of the collection by tree order. Meaning the order matches the liner path from tree trunk to branches.
+The collections have a length property that reflects the number of elements in the list
+
+Node lists and html collections are array like but not a true JavaScript array which inherits array methods.
+-->
+<!--
+<html>
+    <body>
+        <ul>
+            <li>One</li>
+            <li>Two</li>
+        </ul>
+        <script>
+            var ulChild = document.querySelector('ul').childNodes;
+            console.log(ulChild);
+            
+            //Converting a node list and html collection list to a true JavaScript array can provide a good deal of advantages. For one it gives us the ability to create a snapshot of the list that is not tied to the live DOM considering that NodeList and HTMLCollection are live lists. Secondly, converting a list to a JavaScript array gives access to the methods provided by the Array object (e.g. forEach, pop, map, reduce etc...).
+
+            //To convert an array like list to a true JavaScript array pass the array-like list to call() or apply(), in which the call() or apply() is calling a method that returns an un-altered true JavaScript array. In the code below I use the .slice() method, which doesn't really slice anything I am just using it to convert the list to a JavaScript Array due to the fact the slice() returns an array.
+            
+            console.log(Array.isArray(ulChild));
+            console.log(Array.isArray(Array.prototype.slice.call(ulChild)))
+
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+Traversing nodes:
+parentNode
+firstChild
+lastChild
+nextSibling
+previousSibling
+All the above method will also include text and comment nodes.
+so if there is a line break between nodes, they will be considered as nodes.
+to skip them use: 
+
+firstElementChild
+lastElementChild
+nextElementChild
+previousElementChild
+children
+<html>
+    <body>
+        <ul id='ul'>
+            <li id="A"></li>
+            <li id="B"></li>
+            <!-- comment --><!--
+        </ul>
+        
+        <script>
+            function $(id){
+                return document.getElementById(id);
+            }
+            var ul = $('ul');
+            console.log(ul.lastChild);
+            console.log(ul.lastElementChild);
+        </script>
+    </body>
+</html>
+-->
+understand this part from dom-enlightenment
+1.17 Verify a node position in the DOM tree with contains() & compareDocumentPosition()
+
+
+<!--
+get tag name: returns the tag in UPPERCASE
+get attribute name
+set attribute: use setAttribute on the node
+remove attribute: use removeAttribute
+check attribute: use hasAttribute('attributeName')
+<html>
+    <body>
+        <a href="#" title='dummy title' class='link' style='margin:0px;'>Hi</a>
+        <script>
+            console.log(document.querySelector('a').tagName);
+            var atts = document.querySelector('a').attributes;
+            for (var i = 0; i < atts.length; i++)
+                console.log(atts[i].nodeName + ": " + atts[i].nodeValue);
+            
+            var anchor = document.querySelector('a');
+            anchor.setAttribute('href', 'http://google.com')
+            anchor.removeAttribute('class')
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+class list: get all the classes associated with element
+add class: node.classList.add('newClass')
+remove class: node.classList.remove('oldClass');
+check existence: node.classList.contains('className')
+
+
+NodeLists created from getElementsByTagName() and getElementsByClassName() are considered live are will always reflect the state of the document even if the document is updated after the list is created/selected.
+The querySelectorAll() method does not return a live list of elements. Meaning that the list created from querySelectorAll() is a snap shot of the document at the time it was created and is not reflective of the document as it changes. The list is static not live.
+
+Passing either querySelectorAll() or getElementsByTagName() the string '*', which generally means all, will return a list of all elements in the document.
+
+-->
+<!--
+select all immediate child element nodes:
+Notice that using children only gives us the immediate element nodes excluding any nodes (e.g. text nodes) 
+<html>
+    <body>
+        <ul>
+            <li><strong>Hi</strong></li>
+            <li>There</li>
+        </ul>
+        
+        <script>
+            var ulelement = document.querySelector('ul');
+            console.log(ulelement.children);
+        </script>
+    </body>
+</html>
+-->
+
+<!--
+You should be aware that there are some legacy, pre-configured arrays-like-lists, containing element nodes from an HTML document. Below I list a couple of these (not the complete list) that might be handy to be aware of.
+
+document.all - all elements in HTML document
+document.forms - all <form> elements in HTML document
+document.images - all <img> elements in HTML document
+document.links - all <a> elements in HTML document
+document.scripts - all <script> elements in HTML document
+document.styleSheets - all <link> or <style> objects in HTML document
+
+
+offsetParent
+offsetLeft
+offsetTop
+getBoundingClientRect
+The clientWidth and clientHeight properties return a total size of an element by adding together the content of the element and its padding excluding the border sizes
+
+Using elementFromPoint() it's possible to get a reference to the topmost element in an html document at a specific point in the document. In the code example below I simply ask what is the topmost element 50 pixels from the top and left of the viewport. Since we have two <div>'s at that location the topmost (or if there is no z-index set the last one in document order) div is selected and returned
+
+scrollHeight scrollWidth scrollTop scrollLeft scrollIntoView
+
+-->
+
+<!--
+node.style: what is returned from the style property is a CSSStyleDeclaration object and not a string. . Additionally note that only the elements inline styles 
+
+Getting, setting, & removing individual inline CSS properties
+
+<html>
+    <body>
+        <div></div>
+        <script>
+            var divStyle = document.querySelector('div').style;
+            //set
+            divStyle.background = 'red';
+            divStyle.border = '1px solid black'
+            divStyle.width = '100px';
+            
+            // get
+            console.log(divStyle.backgroundColor);
+            
+            //remove
+            divStyle.backgroundColor = '';
+            
+            // add all style in one line
+            divStyle.cssText = 'backround:red;border:1px solid yellow;'
+        </script>
+    </body>
+
+</html>
+
+The style property only contains the css that is defined via the style attribute. To get an elements css from the cascade (i.e. cascading from inline style sheets, external style sheets, browser style sheets) as well as its inline styles you can use getComputedStyle(). This method provides a read-only CSSStyleDeclaration object similar to style. In the code example below I demonstrate the reading of cascading styles, not just element inline styles.
+
+No values can by set on a CSSStyleDeclaration object returned from getComputedStyles() its read only.
+-->
+
+<!--
+add class and id
+<html>
+    <head>
+        <style>
+            .foo {
+                background: yellow;
+                padding: 10px;
+            }
+            #bar {
+                border: 10px solid #000;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>This is styled using js</div>
+        
+        <script>
+            var div = document.querySelector('div');
+            div.setAttribute('id', 'bar');
+            div.classList.add('foo')
+        </script>
+    </body>
+
+</html>
+
+-->
+
+<!--
+manipulate text nodes with 
+insertData(), replaceData(), substringData()
+appendData(), deleteData()
+
+<html>
+    <body>
+        <p>Go Big Blue Blue</p>
+        <script>
+            var ptext = document.querySelector('p').firstChild;
+            ptext.appendData('!');
+            console.log(ptext.data);
+            
+            ptext.deleteData(7, 5);
+            console.log(ptext.data);
+            
+            ptext.insertData(7, 'Blue ');
+            console.log(ptext.data);
+            
+            ptext.replaceData(7, 5, 'Bunny ');
+            
+            console.log(ptext.substringData(7, 10));
+        </script>
+    </body>
+</html>
+-->
+review this7.7 When mulitple sibling Text nodes occur
+
+
+The textContent property can be used to get all child text nodes, as well as to set the contents of a node to a specific Text node. When its used on a node to get the textual content of the node it will returned a concatenataed string of all text nodes contained with the node you call the method on. This functionality would make it very easy to extract all text nodes from an HTML document. Below I extract all of the text contained withing the <body> element. Notice that textContent gathers not just immediate child text nodes but all child text nodes no matter the depth of encapsulation inside of the node the method is called
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1> Dude</h2>
+<p>you <strong>rock!</strong></p>
+<script>
+
+console.log(document.body.textContent); //logs 'Dude you rock!' with some added white space
+
+</script>
+</body>
+</html>
+-->
+
+When textContent is used to set the text contained within a node it will remove all child nodes first, replacing them with a single Text node. In the code below I replace all the nodes inside of the <div> element with a single Text node.
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div>
+<h1> Dude</h2>
+<p>you <strong>rock!</strong></p>
+</div>
+<script>
+
+document.body.textContent = 'You don\'t rock!'
+console.log(document.querySelector('div').textContent); //logs 'You don't rock!'
+
+</script>
+</body>
+</html>
+
+
+-->
+innerText is aware of CSS. So if you have hidden text innerText ignores this text, whereas textContent will not
+Because innerText cares about CSS it will trigger a reflow, whereas textContent will not
+innerText ignores the Text nodes contained in script and style elements
+innerText, unlike textContent will normalize the text that is returned. Just think of textContent as returning exactly what is in the document with the markup removed. This will include white space, line breaks, and carriage returns
+innerText is considered to be non-standard and browser specific while textContent is implemented from the DOM specifications
+
+
+review 7.10
+
+
+documentFragment:
+use createDocumentGragment() instead of createElement();
+Using a documentFragment to create node structures in memory is extrememly efficent when it comes time to inject the documentFragment into live node structures.
+A document fragment may contain any kind of node (except <body> or <html>) where as an element may not
+When a document fragment is appended to the DOM it transfers from the document fragment to the place its appended. Its no longer in memory in the place you created it. This is not true for element nodes that are temperately used to contained nodes briefly and then are moved to the live DOM                                 
+<!--                                              
+<html>
+    <body>
+        <ul></ul>
+        
+        <script>
+            var ule = document.querySelector('ul');
+            var docFrag = document.createDocumentFragment();
+            
+            ['red', 'blue', 'green'].forEach(function(e){
+                var liEle = document.createElement('li');
+                liEle.textContent = e;
+                docFrag.appendChild(liEle);
+            });
+            ule.appendChild(docFrag);
+        </script>
+    </body>
+</html>
+-->
+review 8.4
+
+Accessing all style sheets
+this is live lists
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" rel="stylesheet" type="text/css">
+
+<style>
+body{background-color:red;}
+</style>
+
+</head>
+<body>
+
+<script>
+
+console.log(document.styleSheets.length); //logs 2
+console.log(document.styleSheets[0]); // the <link>
+console.log(document.styleSheets[1]); // the <style>
+
+</script>
+</body>
+</html>
+-->
+
+access style rules
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style id="styleElement">
+body{background-color:#fff;margin:20px;} /*this is a css rule*/
+p{line-height:1.4em; color:blue;} /*this is a css rule*/
+</style>
+
+</head>
+<body>
+
+<script>
+
+var sSheet = document.querySelector('#styleElement');
+
+console.log(sSheet.cssRules[0].cssText); //logs "body { background-color: red; margin: 20px; }"
+console.log(sSheet.cssRules[1].cssText); //logs "p { line-height: 1.4em; color: blue; }"
+
+</script>
+</body>
+</html>
+-->
+
+Inserting & deleting CSS rules in a style sheet using .insertRule() and .deleteRule()
+
+The insertRule() and deleteRule() methods provided the ability to programatically manipulate the CSS rules in a style sheet. In the code below I use insertRule() to add the css rule p{color:red} to the inline style sheet at index 1. Remeber the css rules in a style sheet are numerical index starting at 0. So by inserting a new rule at index 1 the current rule at index 1 (i.e. p{font-size:50px;}) is push to index 2.
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style id="styleElement">
+p{line-height:1.4em; color:blue;} /*index 0*/
+p{font-size:50px;} /*index 1*/
+</style>
+
+</head>
+<body>
+
+<p>Hi</p>
+
+<script>
+
+//add a new CSS rule at index 1 in the inline style sheet
+document.querySelector('#styleElement').sheet.insertRule('p{color:red}',1);
+
+//verify it was added
+console.log(document.querySelector('#styleElement').sheet.cssRules[1].cssText);
+
+//Delete what we just added
+document.querySelector('#styleElement').sheet.deleteRule(1);
+
+//verify it was removed
+console.log(document.querySelector('#styleElement').sheet.cssRules[1].cssText);
+
+</script>
+</body>
+</html>
+-->
+
+<!--
+edit value of css using .style
+<html>
+    <head>
+        <style id="stylele">
+            p {color: blue;}
+            strong{color: green;}
+        </style>
+    </head>
+    <body>
+        <p>para</p>
+        <div><strong>strong word</strong></div>
+        
+        <script>
+            var styleSheet = document.getElementById('stylele').sheet;
+            styleSheet.cssRules[0].style.color = 'red'; // change p color
+            styleSheet.cssRules[1].style.color = 'purple';//change strong color
+        </script>
+    </body>
+</html>
+
+-->
+
+add style to page
+<html>
+    <head>
+    </head>
+    <body>
+        <p>colored using css from js</p>
+        
+        <script>
+            var styleEl = document.createElement('style');
+            styleEl.innerHTML = 'body{color:red}';
+            document.querySelector('head').appendChild(styleEl);
+            
+            var linkElm = document.createElement('link');
+            linkElm.setAttribute('rel', 'stylesheet');
+            linkElm.setAttribute('type', 'text/css');
+            linkElm.setAttribute('id', 'linkElement');
+            linkElm.setAttribute('href', 'http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css');
+            document.querySelector('head').appendChild(linkElm)
+        </script>
+    </body>
+    
+</html>
+
+disable stylesheet
+document.querySelector('#linkId').disabled
+document.querySelector('#styleId').disabled
+
+
+
+By default when the DOM is being parsed and it encounters a script element it will stop parsing the document, block any further rendering & downloading, and exectue the JavaScript. Because this behavior is blocking and does not permit parallel parsing of the DOM or exection of JavaScriopt its consider to be synchronous. If the JavaScript is external to the html document the blocking is exacerbated because the JavaScript must first be downloaed before it can be parsed. In the code example below I comment what is occuring during browser rendering when the browser encoutners several script elements in the DOM.
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<!-- stop document parsing, block document parsing, load js, exectue js, then resume document parsing... -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+
+<!-- stop document parsing, block document parsing, exectue js, then resume document parsing... -->
+<script>console.log('hi');</script>
+
+</body>
+</html>
+
+
+The script element has an attribute called defer that will defer the blocking, downloading, and executing of an external JavaScript file until the browser has parsed the closing html node. Using this attribute simply defers what normally occurs when a web browser encoutners a script node. In the code below I defer each external JavaScript file until the final html is encountered.
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<!-- defer, don't block just ignore this until the <html> element node is parsed -->
+<script defer src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+
+<!-- defer, don't block just ignore this until the <html> element node is parsed -->
+<script defer src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<!-- defer, don't block just ignore this until the <html> element node is parsed -->
+<script defer src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.0.6/jquery.mousewheel.min.js"></script>
+
+<script>
+//We know that jQuery is not avaliable because this occurs before the closing <html> element
+console.log(window['jQuery'] === undefined); //logs true
+
+//Only after everything is loaded can we safley conclude that jQuery was loaded and parsed
+document.body.onload = function(){console.log(jQuery().jquery)}; //logs function
+</script> 
+
+</body>
+</html>
+
+
+The script element has an attribute called async that will override the sequential blocking nature of script elements when the DOM is being constructed by a web browser. By using this attribute, we are telling the browser not to block the construction (i.e. DOM parsing, including downloading other assets e.g. images, style sheets, etc...) of the html page and forgo the the sequential loading as well.
+
+What happens by using the async attribute is the files are loaded in parallel and parsed in order of download once they are fully downloaded. In the code below I comment what is happening when the HTML document is being parsed and render by the web browser.
+
+A major drawback to using the async attribute is JavaScript files potentially get parsed out of the order they are included in the DOM. This raises a dependency management issue.
+async is a boolan attribute it does not have a value
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<!-- Don't block, just start downloading and then parse the file when it's done downloading -->
+<script async src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+
+<!-- Don't block, just start downloading and then parse the file when it's done downloading -->
+<script async src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<!-- Don't block, just start downloading and then parse the file when it's done downloading -->
+<script async src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.0.6/jquery.mousewheel.min.js"></script>
+
+
+<script>
+// we have no idea if jQuery has been loaded yet likley not yet...
+console.log(window['jQuery'] === undefined);//logs true
+
+//Only after everything is loaded can we safley conclude that jQuery was loaded and parsed
+document.body.onload = function(){console.log(jQuery().jquery)};
+</script> 
+
+</body>
+</html>
+
+
+Given a script elements synchronous nature, placing one in the head element of an HTML document presents a timing problem if the JavaScript execution is dependant upon any of the DOM that proceeds the script. In a nut shell, if JavaScript is executed at the begining of a document that manipulates the DOM, that proceeds it, you are going to get a JavaScript error. Proven by the following code example:
+
+live code: N/A
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stop parsing, block parsing, exectue js then resume... -->
+<script>
+//we can't script the body element yet, its null, not even been parsed by the browser, its not in the DOM yet 
+console.log(document.body.innerHTML); //logs Uncaught TypeError: Cannot read property 'innerHTML' of null 
+</script>
+</head>
+<body>
+<strong>Hi</strong>
+</body>
+</html>
+Many developers, myself being one of them, for this reason will attempt to place all script elements before the closing body element. By doing this you can rest assured the DOM in front of the script's has been parsed and is ready for scripting. As well, this strategy will remove a dependancy on DOM ready events that can liter a code base
+
+
+The downside to using a property event handler is that only one value can be assigned to the event property at a time. Meaning, you can't add more than one propety event handler to a DOM node when assigning events as property values. The code below shows an example of this by assigning a value to the onclick property twice, the last value set is used when the event is invoked.
+The addEventListener() smooths out all of these issues
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+var elementDiv = document.querySelector('div');
+
+// property event handler 
+elementDiv.onclick = function(){console.log('I\'m first, but I get overidden/replace')};
+
+//overrides/replaces the prior value
+elementDiv.onclick = function(){console.log('I win')};
+
+</script> 
+</body>
+</html>
+
+
+The value of this when using addEventListener()
+
+The value of this inside of the event listener function passed to the addEventListener() method will be a reference to the node or object the event is attached too. In the code below I attach an event to a <div> and then using this inside of the event listener gain access to the <div> element the event is attached too.
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+
+document.querySelector('div').addEventListener('click',function(){
+// 'this' will be the element or node the event listener is attached too
+console.log(this); //logs '<div>' 
+},false);
+
+</script> 
+</body>
+</html>
+
+
+When events are invoked as part of the event flow the this value will remain the value of the node or object that the event listener is attached too. In the code below we add a click event listener to the body and regardless of if you click on the div or the body the value of this always points to <body>.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+
+//click on the <div> or the <body> the value of this remains the <body> element node
+document.body.addEventListener('click',function(){
+console.log(this); //log <body>...</body>
+},false);
+
+</script> 
+</body>
+</html>
+
+
+Additionally its possible using the event.currentTarget property to get the same reference, to the node or object invoking the event listener, that the this property provides. In the code below I leverage the event.currentTarget event object property showcasing that it returns the same value as this.
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+
+document.addEventListener('click',function(event){
+console.log(event.currentTarget);  //logs '#document'
+//same as...
+console.log(this);
+},false);
+
+document.body.addEventListener('click',function(event){
+console.log(event.currentTarget); //logs '<body>'
+//same as...
+console.log(this);
+},false);
+
+document.querySelector('div').addEventListener('click',function(event){
+console.log(event.currentTarget); //logs '<div>'
+//same as...
+console.log(this);
+},false);
+
+</script> 
+</body>
+</html>
+
+
+<!--
+Referencing the target of an event and not the node or object the event is invoked on
+
+Because of the event flow its possible to click a <div>, contained inside of a <body> element and have a click event listener attached to the <body> element get invoked. When this happens, the event object passed to the event listener function attached to the <body> provides a reference (i.e. event.target) to the node or object that the event originated on (i.e. the target). In the code below when the <div> is clicked, the <body> element's click event listener is invoked and the event.target property references the orginal <div> that was the target of the click event. The event.target can be extremely useful when an event that fires because of the event flow needs knowledge about the origin of the event.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+
+document.body.addEventListener('click',function(event){
+//when the <div> is clicked logs '<div>' because the <div> was the target in the event flow
+console.log(event.target); 
+},false);
+
+</script> 
+</body>
+</html>
+
+
+<!--
+Stoping the event flow using stopPropagation()
+
+Calling stopProgagation() from within an event handler/listener will stop the capture and bubble event flow phases, but any events directly attached to the node or object will still be invoked. In the code below the onclick event attached to the <body> is never gets invoked because we are stopping the event from bubbling up the DOM when clicking on the <div>.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+
+document.querySelector('div').addEventListener('click',function(){
+console.log('me too, but nothing from the event flow!');
+},false);
+
+document.querySelector('div').addEventListener('click',function(event){
+console.log('invoked all click events attached, but cancel capture and bubble event phases');
+event.stopPropagation();
+},false);
+
+document.querySelector('div').addEventListener('click',function(){
+console.log('me too, but nothing from the event flow!');
+},false);
+
+/*when the <div> is clicked this event is not invoked because one of the events attached to the <div> stops the capture and bubble flow.*/
+document.body.addEventListener('click',function(){
+console.log('What, denied from being invoked!');
+},false);
+
+</script> 
+</body>
+</html>
+
+vNotice that other click events attached to the the <div> still get invoked! Additionally using stopPropagation() does not prevent default events. Had the <div> in our code example been a <a> with an href value calling stopPropagation would not have stopped the browser default events from getting invoked.
+
+
+<!--
+Stoping the event flow as well as other like events on the same target using stopImmediatePropagation()
+
+Calling the stopImmediatePropagation() from within an event handler/listener will stop the event flow phases (i.e. stopPropagation()), as well as any other like events attached to the event target that are attached after the event listener that invokes the stopImmediatePropagation() method. In the code example below If we call stopImmediatePropagation()from the second event listener attached to the <div> the click event that follows will not get invoked.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<div>click me</div>
+
+<script>
+
+//first event attached
+document.querySelector('div').addEventListener('click',function(){
+console.log('I get invoked because I was attached first');
+},false);
+
+//seond event attached
+document.querySelector('div').addEventListener('click',function(event){
+console.log('I get invoked, but stop any other click events on this target');
+event.stopImmediatePropagation();
+},false);
+
+//third event attached, but because stopImmediatePropagation() was called above this event does not get invoked
+document.querySelector('div').addEventListener('click',function(){
+console.log('I get stopped from the previous click event listener');
+},false);
+
+//notice that the event flow is also cancelled as if stopPropagation was called too
+document.body.addEventListener('click',function(){
+console.log('What, denied from being invoked!');
+},false);
+
+</script> 
+</body>
+</html>
+
+

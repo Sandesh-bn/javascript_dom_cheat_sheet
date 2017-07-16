@@ -1,0 +1,122 @@
+<html>
+<head>
+    </head>
+    <body>
+        <div id="content">
+            <h1>heading</h1>
+            
+            <label for="investment">Monthly investment</label>
+            <input type="text" id="investment"/><br/>
+            
+            <label for="rate">Annual interset rate: </label>
+            <input type="text" id="rate"/><br/>
+            
+            <label for="years">Number of years: </label>
+            <input type="text" id="years"/><br/>
+            
+            <label for="futureValue">Future value: </label>
+            <input type="text" id="futureValue" />
+            
+            <label>&nbsp;</label>
+            <input type="button" id="calc" value="Calculate"/><br/>
+            <table border="1" cellspacing="1" cellpadding='3'>
+                <tr align="center">
+                    <th>Region</th>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                </tr>
+                <tr align="right">
+                    <th>West</th>
+                    <td>$15000</td>
+                    <td>$1333</td>
+                </tr>
+                <tr align="right">
+                    <th colspan="3">Central</th>
+                </tr>
+            </table>
+            
+            <table border="1" cellspacing="1" cellpadding="5">
+                <tr align="center">
+                    <th colspan="2" rowspan="2">Sales</th>
+                    <th colspan="3">First quarter</th>
+                </tr>
+                
+                <tr align="center">
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                </tr>
+                
+                <tr align="right">
+                    <th rowspan="3">Regions</th>
+                    <th>West</th>
+                    <td>$132424</td>
+                    <td>$132424</td>
+                    <td>$132424</td>
+                </tr>
+                <tr align="right">
+                    <th>Central</th>
+                    <td>$132424</td>
+                    <td>$132424</td>
+                    <td>$132424</td>
+                </tr>
+            </table>
+            <script>
+                var today = new Date();
+                document.writeln(today.getFullYear());
+            </script>
+            
+            <p>Accetp or ecline</p>
+            <p><input type="radio" name="policy" id="policy_accept" value="accept"/>Accept</p>
+            <p><input type="radio" name="policy" id="policy_decline" value="decline"/>Decline</p>
+        </div>
+        
+        
+        <script>
+            var $ = function(id){
+                document.getElementById(id)
+            }
+                //calculateClick
+            var calculateClick = function(){
+                var age = prompt("Enter your age: ")
+                if (age == null){
+                    alert("you entered cancel")
+                }
+                else {
+                    age = parseInt(age);
+                    if (isNaN(age)){
+                        alert("Invalid input")
+                    }
+                    else if (age >= 18)
+                        alert("you can voet")
+                    else    
+                        alert("you cannot voe")
+                }
+               /* var inv = parseFloat($("investment").value);
+                var rate = parseFloat($("rate").value);
+                var years = parseInt($("years").value);
+                
+                
+                $("futureValue").value = "you clicked"
+                */
+                var status = "unknown";
+                if ($("policy_accept").checked)
+                    status = $("policy_accept").value;
+                if ($("policy_decline").checked)
+                    status = $("policy_decline").value;
+                
+                if (status == "unknown")
+                    alert("you must choose an option")
+                else if (status == "accept")
+                    alert("welcomme")
+                else
+                    alert("good bye")
+            }
+            window.onload = function(){
+               // $("calc").onclick = calculateClick;
+                calculateClick();
+                $("investment").focus()
+            }
+        </script>
+    </body>
+</html>
